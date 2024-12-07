@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My WebGL Game</title>
+    <script>
+        // Add JavaScript for better mobile keyboard handling
+        document.addEventListener('click', function (event) {
+            const inputElement = document.activeElement;
+            if (inputElement.tagName === 'INPUT' || inputElement.tagName === 'TEXTAREA') {
+                inputElement.focus();
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="unity-container" style="width: 100%; height: 100%; margin: 0; padding: 0;">
+        <canvas id="unity-canvas" style="width: 100%; height: 100%; margin: 0; padding: 0;"></canvas>
+        <div id="unity-loading-bar" style="display: none;"></div>
+    </div>
+    <script>
+        // UnityLoader will automatically fill this canvas with the WebGL build
+    </script>
+</body>
+</html>
