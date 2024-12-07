@@ -6,6 +6,15 @@
     <title>Unity WebGL Player | Dungeons</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script>
+     // Add JavaScript for better mobile keyboard handling
+       document.addEventListener('click', function (event) {
+          const inputElement = document.activeElement;
+          if (inputElement.tagName === 'INPUT' || inputElement.tagName === 'TEXTAREA') {
+             inputElement.focus();
+          }
+        });
+    </script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
