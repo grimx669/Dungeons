@@ -16,34 +16,37 @@
         });
           
         // Function to create a native HTML input field
-        function createNativeInputField(id, placeholder) {
-          let existingInput = document.getElementById(id);
-          if (existingInput) return; // Prevent duplicates
-      
-          const input = document.createElement("input");
-          input.type = "text";
-          input.id = id;
-          input.placeholder = placeholder;
-          input.style.position = "absolute";
-          input.style.top = "50%";
-          input.style.left = "50%";
-          input.style.transform = "translate(-50%, -50%)";
-          input.style.fontSize = "16px";
-          input.style.zIndex = "1000"; // Ensure it appears above Unity canvas
-          document.body.appendChild(input);
-      
-          // Pass the input value back to Unity on blur
-          input.addEventListener("blur", function () {
+      function createNativeInputField(id, placeholder) {
+        let existingInput = document.getElementById(id);
+        if (existingInput) return;
+    
+        const input = document.createElement("input");
+        input.type = "text";
+        input.id = id;
+        input.placeholder = placeholder;
+        input.style.position = "absolute";
+        input.style.top = "50%"; // Adjust as necessary
+        input.style.left = "50%";
+        input.style.transform = "translate(-50%, -50%)";
+        input.style.fontSize = "20px";
+        input.style.padding = "5px";
+        input.style.zIndex = "1000"; // Ensure it appears above Unity canvas
+        input.style.width = "80%";
+        input.style.boxSizing = "border-box";
+    
+        document.body.appendChild(input);
+    
+        input.focus(); // This ensures the keyboard pops up
+    
+        input.addEventListener("blur", function () {
+            // Pass input value to Unity
             const unityInstance = window.unityInstance || null;
             if (unityInstance) {
-              unityInstance.SendMessage('NameInputHandler', 'ReceiveInputText', input.value);
+                unityInstance.SendMessage('NameInputHandler', 'ReceiveInputText', input.value);
             }
             document.body.removeChild(input);
-          });
-      
-          input.focus(); // Open the keyboard
-        }
-      
+        });
+    }
         // Function to remove a native HTML input field
         function removeNativeInputField(id) {
           const input = document.getElementById(id);
